@@ -1,3 +1,16 @@
+//var arr = [1,12,3,14,5,  "srijan", "vibhuti"];
+//console.log(arr);
+var arr2=[[1,0,12],[7,-3,2],[-5,2,1]];
+console.log(arr2);
+//console.log(arr2[0][1]);
+//arr.push(9);
+//console.log(arr);
+//arr.pop();
+//console.log(arr);
+//console.log(arr.length);
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,6 +20,7 @@ var engine, world;
 var box1, pig1;
 var backgroundImg,platform;
 var bird, slingShot;
+var gameState = "onSling";
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -68,14 +82,18 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if(gameState === "onSling"){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = "launched";
 }
 function keyPressed(){
-    if(keyCode===32)
-    slingshot.attach(bird.body);
+    if(keyCode===32){
+   // slingshot.attach(bird.body);
+    }
 }
